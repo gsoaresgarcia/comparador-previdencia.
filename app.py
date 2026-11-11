@@ -4,7 +4,7 @@ from datetime import date
 from flask import Flask,jsonify,render_template,request,send_file
 from analytics import compute,FUNDS
 from data_store import read,maybe_refresh
-from report_pdf import build
+from report_pdf import build,options_for
 app=Flask(__name__,template_folder='.')
 app.json.ensure_ascii=False
 REPORTS=OrderedDict();LOCK=threading.Lock()
@@ -34,5 +34,7 @@ def pdf():
     obj=request.get_json(force=True) or {};identifier=obj.get('report_id')
     with LOCK:cached=REPORTS.get(identifier) if identifier else None
     if not cached or time.time()-cached[0]>3600:return jsonify(error='A consulta expirou. Compare novamente antes de baixar o PDF.'),410
-    return send_file(io.BytesIO(build(cached[1])),mimetype='application/pdf',as_attachment=True,download_name='comparativo-previdencia.pdf')
+    try: options=options_for(obj.get('options'))
+    except ValueError as e:return jsonify(error=str(e)),400
+    return send_file(io.BytesIO(build(cached[1],options)),mimetype='application/pdf',as_attachment=True,download_name='comparativo-previdencia.pdf')
 if __name__=='__main__':app.run(port=5000)
