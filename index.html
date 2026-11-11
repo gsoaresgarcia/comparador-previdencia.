@@ -1,21 +1,220 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Comparador de Previdência</title><style>
-:root{font-family:Inter,system-ui,Arial,sans-serif;color:#14243a;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1040px;margin:auto;padding:32px 18px}header{background:#12345a;color:white;padding:24px 0}header .wrap{padding:0 18px}h1{margin:0;font-size:27px}h2{font-size:18px}p{line-height:1.5}.muted{color:#64748b}.panel{background:white;border:1px solid #dce4ed;border-radius:16px;padding:24px;margin:20px 0;box-shadow:0 4px 18px #19324b0b}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}label{display:block;font-weight:600;margin:12px 0 6px}input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px}button{background:#0c568c;border:0;border-radius:9px;color:white;padding:12px 18px;font-size:15px;font-weight:700;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.secondary{background:#e5edf5;color:#12345a}.checks{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0 22px}.checks label{display:flex;gap:7px;align-items:center;margin:0}.checks input{width:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;border-bottom:1px solid #e2e8f0;padding:12px 9px}th{background:#eaf1f8}.scroll{overflow:auto}.status{padding:12px;border-radius:9px;background:#eaf1f8;margin-top:16px}.error{background:#fee2e2;color:#991b1b}.results{display:none}.suggestions{border:1px solid #cbd5e1;border-radius:9px;max-height:190px;overflow:auto}.suggestions button{display:block;background:white;color:#1e293b;text-align:left;width:100%;border-radius:0;border-bottom:1px solid #eee;font-weight:400}.suggestions button:hover{background:#eef6fc}small{color:#64748b}@media(max-width:650px){.grid{grid-template-columns:1fr}.panel{padding:16px}}
-select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;background:white;font-size:15px}.fund-actions{display:flex;gap:8px}.fund-actions button{white-space:nowrap;padding:9px;font-size:13px}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #38bdf8;outline-offset:2px}</style></head><body><header><div class="wrap"><h1>Comparador de Previdência</h1><div>Histórico de cotas de fundos • Dados CVM</div></div></header><main class="wrap"><section class="panel"><h2>Selecione dois fundos</h2><p class="muted">Busque nos 39 fundos da nossa grade por nome, instituição ou CNPJ. Você também pode selecionar diretamente na lista abaixo.</p><div class="grid"><div><label for="q1">Fundo 1</label><input id="q1" placeholder="Nome ou CNPJ" autocomplete="off"><div id="s1" class="suggestions" hidden></div><small id="picked1">Nenhum fundo selecionado</small></div><div><label for="q2">Fundo 2</label><input id="q2" placeholder="Nome ou CNPJ" autocomplete="off"><div id="s2" class="suggestions" hidden></div><small id="picked2">Nenhum fundo selecionado</small></div></div><label for="end">Data final da janela móvel</label><input id="end" type="date" value="2026-10-31" max="{{today}}" style="max-width:240px"><h2>Janelas a comparar e incluir no PDF</h2><div class="checks" id="windows"><label><input type="checkbox" value="6" checked>6 meses</label><label><input type="checkbox" value="12" checked>12 meses</label><label><input type="checkbox" value="24" checked>24 meses</label><label><input type="checkbox" value="36" checked>36 meses</label><label><input type="checkbox" value="48" checked>48 meses</label><label><input type="checkbox" value="60" checked>60 meses</label></div><button id="run">Comparar histórico</button> <button id="pdf" class="secondary" disabled>Baixar PDF</button><div id="status" class="status" hidden></div></section><section class="panel" aria-labelledby="grade-title"><h2 id="grade-title">Grade de fundos de previdência</h2><p class="muted">Escolha um fundo para cada lado da comparação. Nomes resumidos; confira o CNPJ do seu plano.</p><div class="grid"><div><label for="grade-query">Buscar na grade</label><input id="grade-query" placeholder="Nome, instituição ou CNPJ"></div><div><label for="institution">Instituição / seguradora</label><select id="institution"><option value="">Todas as instituições</option><option>BTG</option><option>Bradesco</option><option>Itaú</option><option>Safra</option><option>Santander</option><option>XP</option></select></div></div><p id="grade-count" class="muted" aria-live="polite"></p><div class="scroll" style="max-height:480px"><table><thead><tr><th>Fundo</th><th>CNPJ</th><th>Selecionar</th></tr></thead><tbody id="grade-body"></tbody></table></div></section><section id="results" class="panel results"><h2>Rentabilidade acumulada por janela</h2><div class="scroll"><table><thead><tr><th>Janela</th><th>Fundo 1</th><th>Fundo 2</th><th>Período efetivo (Fundo 1 / Fundo 2)</th></tr></thead><tbody id="tbody"></tbody></table></div><p class="muted">Rentabilidade pela variação da cota. A CVM pode não disponibilizar cotas para todos os períodos ou classes. Não representa retorno líquido individual.</p></section><p class="muted">Fonte: CVM — Informe Diário de Fundos de Investimento. Primeira consulta pode levar vários minutos: cada mês histórico é obtido diretamente dos arquivos oficiais. Não há projeções futuras.</p></main><script>
-const selected=[null,null];const $=id=>document.getElementById(id);let lastPayload=null;let timer;
-function status(msg,err=false){$('status').hidden=false;$('status').textContent=msg;$('status').className='status'+(err?' error':'')}
-const FUNDS=[{"institution":"Santander","name":"Santander DI Advanced","cnpj":"37.179.395/0001-41"},{"institution":"Santander","name":"Santander DI VIP","cnpj":"34.246.392/0001-95"},{"institution":"Santander","name":"Santander DI Títulos Públicos VIP","cnpj":"34.246.380/0001-60"},{"institution":"Santander","name":"Santander Conservador PB","cnpj":"17.138.471/0001-63"},{"institution":"Santander","name":"Santander Crescimento VIP Crédito Privado","cnpj":"34.246.519/0001-76"},{"institution":"Santander","name":"Santander PB Renda Fixa Crédito Privado","cnpj":"18.599.388/0001-54"},{"institution":"Santander","name":"Santander Dinâmico Renda Fixa Crédito Privado","cnpj":"34.246.353/0001-98"},{"institution":"Santander","name":"Santander Pamplona","cnpj":"30.102.340/0001-94"},{"institution":"Santander","name":"Santander XVIII Renda Fixa Crédito Privado","cnpj":"20.977.437/0001-97"},{"institution":"Santander","name":"Santander Fix Executivo","cnpj":"03.534.936/0001-90"},{"institution":"Santander","name":"Santander Multiestratégia CP LP","cnpj":"43.926.150/0001-33"},{"institution":"Santander","name":"Santander Ultra","cnpj":"22.918.315/0001-55"},{"institution":"Santander","name":"Santander Super","cnpj":"17.803.961/0001-37"},{"institution":"Santander","name":"Santander NTN-B 2026 VIP","cnpj":"45.384.045/0001-45"},{"institution":"Santander","name":"Santander NTN-B 2028 VIP","cnpj":"45.384.098/0001-66"},{"institution":"Santander","name":"Santander Inflação Curta Advanced","cnpj":"34.476.012/0001-09"},{"institution":"Santander","name":"Santander Bolsas Globais Reais 20","cnpj":"40.005.818/0001-11"},{"institution":"Santander","name":"Santander Seleção 70 2","cnpj":"37.179.245/0001-38"},{"institution":"Santander","name":"Santander Innovation Dólar 40","cnpj":"40.005.789/0001-98"},{"institution":"Bradesco","name":"Bradesco Premium PGBL/VGBL","cnpj":"28.428.077/0001-86"},{"institution":"Itaú","name":"Itaú Flexprev Privilège DI","cnpj":"40.413.765/0001-78"},{"institution":"XP","name":"XP Trend Pós-fixado XP Seguros Prev","cnpj":"33.784.231/0001-92"},{"institution":"BTG","name":"BTG Tesouro Selic Previdência","cnpj":"29.078.039/0001-03"},{"institution":"Bradesco","name":"Bradesco Ultra PGBL/VGBL","cnpj":"44.703.501/0001-00"},{"institution":"Safra","name":"Safra Prev Capital Market","cnpj":"19.390.898/0001-80"},{"institution":"Safra","name":"Safra Prev Vitesse","cnpj":"37.332.819/0001-66"},{"institution":"Safra","name":"Safra Prev Capital Market VIP","cnpj":"19.390.999/0001-50"},{"institution":"Bradesco","name":"Bradesco Private Performance PGBL/VGBL","cnpj":"32.312.116/0001-52"},{"institution":"Bradesco","name":"Bradesco Private PB PGBL/VGBL","cnpj":"17.517.380/0001-39"},{"institution":"Bradesco","name":"Bradesco A PGBL/VGBL Renda Fixa","cnpj":"14.159.055/0001-53"},{"institution":"XP","name":"XP ARX Denali XP Seguros Prev","cnpj":"32.318.938/0001-40"},{"institution":"XP","name":"XP Kinea Alpes Prev XP Seguros","cnpj":"43.636.203/0001-81"},{"institution":"XP","name":"XP AZ Quest Luce Advisory Prev XP","cnpj":"32.847.001/0001-62"},{"institution":"BTG","name":"BTG Crédito Corporativo II Previdência","cnpj":"44.025.282/0001-57"},{"institution":"BTG","name":"BTG ACS Absolute Atenas Prev","cnpj":"47.564.734/0001-67"},{"institution":"BTG","name":"BTG CDB Plus Previdência","cnpj":"47.564.915/0001-93"},{"institution":"Itaú","name":"Itaú Flexprev High Yield II","cnpj":"42.860.483/0001-44"},{"institution":"Itaú","name":"Itaú Kinea Prev Apolo Itaú","cnpj":"32.903.873/0001-09"},{"institution":"Itaú","name":"Itaú Flexprev High Yield","cnpj":"29.259.706/0001-54"}];
+:root{font-family:Inter,system-ui,Arial,sans-serif;color:#142d4e;background:#f3f6fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{background:#142d4e;color:#fff;padding:28px 0}.wrap{max-width:1120px;margin:auto;padding:0 22px}header p{color:#b8ccdf;margin-bottom:0}h1{font-size:28px;margin:0}h2{font-size:21px;margin:0 0 14px}h3{font-size:16px}p{line-height:1.6}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:750}.panel{background:#fff;border:1px solid #dce5ef;border-radius:18px;padding:26px;margin:24px 0}.muted,small{color:#62748a}small{font-size:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.triple{grid-template-columns:repeat(3,1fr)}label{display:block;font-size:13px;font-weight:650;margin:0 0 7px}input,select{width:100%;padding:12px;border:1px solid #c7d4e2;background:white;color:#142d4e;border-radius:9px;font:inherit;font-size:14px}input:focus,select:focus,button:focus-visible{outline:3px solid #93c5fd;outline-offset:2px}button{background:#1463b8;border:0;border-radius:9px;color:white;padding:12px 17px;font:inherit;font-size:14px;font-weight:650;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.secondary{background:#e8eff7;color:#142d4e}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.suggestions{max-height:220px;overflow:auto;border:1px solid #dce5ef;border-radius:9px}.suggestions button{display:block;width:100%;text-align:left;color:#142d4e;background:#fff;font-weight:400;border-radius:0;border-bottom:1px solid #e5edf5}.suggestions button:hover{background:#eff6ff}.status{padding:13px 16px;background:#e7f3ee;border-radius:10px;margin:14px 0}.error{color:#991b1b;background:#fee2e2}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:13px 12px;border-bottom:1px solid #e6edf4;text-align:left}th{background:#f0f5fa;font-size:12px;position:sticky;top:0}td{font-variant-numeric:tabular-nums}.fund-actions{display:flex;gap:6px}.fund-actions button{padding:8px;white-space:nowrap;font-size:12px}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;margin-bottom:18px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}.blue{color:#1463b8}.teal{color:#0d9488}.card{border:1px solid #dce5ef;border-radius:13px;padding:20px;border-top:4px solid #1463b8}.card:nth-child(2){border-top-color:#0d9488}.big{font-size:29px;font-weight:750;letter-spacing:-1px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}.metric{font-size:19px;font-weight:650}.metric small{display:block;font-size:11px;font-weight:400;margin-top:5px}.chart{width:100%;height:auto;display:block}.note{font-size:12px;line-height:1.6;color:#62748a}.heading-row{display:flex;justify-content:space-between;gap:15px;align-items:center}.positive{color:#087b6c}.negative{color:#bd2c32}.target-card{background:#f3f8fc;border-radius:12px;padding:20px}.target-card strong{font-size:25px;display:block;margin:9px 0}details summary{cursor:pointer;font-weight:650}footer{padding:8px 0 30px}[hidden]{display:none!important}@media(max-width:650px){.wrap{padding:0 13px}.panel{padding:18px}.grid,.triple{grid-template-columns:1fr}h1{font-size:23px}.big{font-size:26px}.heading-row{align-items:flex-start;flex-direction:column}.legend{gap:10px}.fund-actions{flex-direction:column}td,th{padding:10px 8px}}
+</style></head><body><header><div class="wrap"><div class="eyebrow">ANÁLISE HISTÓRICA · DADOS PÚBLICOS</div><h1>Comparador de Previdência</h1><p>Uma visão clara do desempenho, do risco e do caminho do patrimônio.</p></div></header><main class="wrap"><section class="panel"><h2>Monte sua comparação</h2><p class="muted">Busque nos 39 fundos por nome, instituição ou CNPJ, ou use a grade abaixo.</p><div class="grid"><div><label for="q1">Fundo 1</label><input id="q1" placeholder="Nome, instituição ou CNPJ" autocomplete="off"><div id="s1" class="suggestions" hidden></div><small id="picked1">Nenhum fundo selecionado</small></div><div><label for="q2">Fundo 2</label><input id="q2" placeholder="Nome, instituição ou CNPJ" autocomplete="off"><div id="s2" class="suggestions" hidden></div><small id="picked2">Nenhum fundo selecionado</small></div></div><div class="grid triple" style="margin-top:22px"><div><label for="end">Data final desejada</label><input id="end" type="date" value="{{default_end}}" max="{{today}}"></div><div><label for="horizon">Período da análise</label><select id="horizon"><option value="6">6 meses</option><option value="12">12 meses</option><option value="24" selected>24 meses</option><option value="36">36 meses</option><option value="48">48 meses</option><option value="60">60 meses</option></select></div><div><label for="target">Patrimônio final desejado (R$)</label><input id="target" type="number" value="1000000" min="0.01" max="1000000000000" step="0.01"></div></div><div class="actions"><button id="run">Comparar fundos</button><button id="pdf" class="secondary" disabled>Baixar relatório PDF</button></div><div id="status" class="status" role="status" hidden></div><p class="note">O patrimônio desejado é usado em uma simulação histórica: quanto seria necessário aplicar no início para alcançar esse valor ao final. Sem projeções futuras.</p></section>
+<div id="results" hidden><section class="panel"><div class="heading-row"><div><div class="eyebrow">DESEMPENHO E RISCO</div><h2 style="margin-top:8px">Comparação em perspectiva</h2></div><small id="period"></small></div><div class="grid" id="cards"></div><h3>Crescimento acumulado no período</h3><div class="legend" id="legend"></div><div id="chart"></div><p id="risk-note" class="note"></p></section><section class="panel"><h2>Quanto precisaria ter investido?</h2><p id="target-description"></p><div class="grid" id="capital"></div><p class="note">Aplicação inicial = patrimônio desejado ÷ (1 + retorno acumulado). Sem aportes ou resgates intermediários, inflação, IR, carregamento ou outras condições individuais. Despesas do fundo já refletidas nas cotas.</p></section><section class="panel"><h2>Outras janelas de comparação</h2><div class="scroll"><table><thead><tr><th>Janela</th><th class="blue">Fundo 1</th><th class="teal">Fundo 2</th><th>Período comum observado</th></tr></thead><tbody id="summary"></tbody></table></div></section><section class="panel"><h2>Rentabilidade mês a mês</h2><div class="scroll"><table><thead><tr><th>Mês</th><th class="blue">Fundo 1</th><th class="teal">Fundo 2</th><th>CDI</th></tr></thead><tbody id="monthly"></tbody></table></div><p class="note">* Mês parcial da janela selecionada. N/D: informação indisponível.</p></section><section class="panel"><details><summary>Fontes e metodologia</summary><p class="note">Cotas: CVM, Informe Diário (VL_QUOTA). CDI: Banco Central, série SGS 12 (% ao dia). Mesmas datas de início e fim para ambos os fundos, com tolerância de até 10 dias anteriores à data solicitada. Rentabilidade: cota final ÷ cota inicial − 1.</p><p class="note">Volatilidade anualizada: desvio-padrão amostral dos retornos diários × √252. Sharpe anualizado: média do excesso diário sobre CDI ÷ desvio-padrão desse excesso × √252. Retorno anualizado: fator acumulado elevado a 252/n − 1. Indicadores de risco exigem ao menos 20 retornos e série diária completa alinhada ao CDI; lacunas ou denominador nulo geram N/D.</p><p id="updated" class="note"></p></details></section></div>
+<section class="panel" aria-labelledby="grade-title"><h2 id="grade-title">Grade de fundos de previdência</h2><p class="muted">Selecione os fundos para cada lado da comparação. Confira o CNPJ do seu plano.</p><div class="grid"><div><label for="grade-query">Buscar na grade</label><input id="grade-query" placeholder="Nome, instituição ou CNPJ"></div><div><label for="institution">Instituição / seguradora</label><select id="institution"><option value="">Todas as instituições</option><option>BTG</option><option>Bradesco</option><option>Itaú</option><option>Safra</option><option>Santander</option><option>XP</option></select></div></div><p id="grade-count" class="muted" aria-live="polite"></p><div class="scroll" style="max-height:450px"><table><thead><tr><th>Fundo</th><th>CNPJ</th><th>Selecionar</th></tr></thead><tbody id="grade-body"></tbody></table></div></section><footer class="note">Rentabilidade passada não garante resultados futuros. Material informativo; confira os dados e as condições do plano antes de compartilhar com clientes.</footer></main><script>
+const FUNDS=[
+  {
+    "institution": "Santander",
+    "name": "Santander DI Advanced",
+    "cnpj": "37.179.395/0001-41"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander DI VIP",
+    "cnpj": "34.246.392/0001-95"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander DI Títulos Públicos VIP",
+    "cnpj": "34.246.380/0001-60"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Conservador PB",
+    "cnpj": "17.138.471/0001-63"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Crescimento VIP Crédito Privado",
+    "cnpj": "34.246.519/0001-76"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander PB Renda Fixa Crédito Privado",
+    "cnpj": "18.599.388/0001-54"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Dinâmico Renda Fixa Crédito Privado",
+    "cnpj": "34.246.353/0001-98"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Pamplona",
+    "cnpj": "30.102.340/0001-94"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander XVIII Renda Fixa Crédito Privado",
+    "cnpj": "20.977.437/0001-97"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Fix Executivo",
+    "cnpj": "03.534.936/0001-90"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Multiestratégia CP LP",
+    "cnpj": "43.926.150/0001-33"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Ultra",
+    "cnpj": "22.918.315/0001-55"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Super",
+    "cnpj": "17.803.961/0001-37"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander NTN-B 2026 VIP",
+    "cnpj": "45.384.045/0001-45"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander NTN-B 2028 VIP",
+    "cnpj": "45.384.098/0001-66"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Inflação Curta Advanced",
+    "cnpj": "34.476.012/0001-09"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Bolsas Globais Reais 20",
+    "cnpj": "40.005.818/0001-11"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Seleção 70 2",
+    "cnpj": "37.179.245/0001-38"
+  },
+  {
+    "institution": "Santander",
+    "name": "Santander Innovation Dólar 40",
+    "cnpj": "40.005.789/0001-98"
+  },
+  {
+    "institution": "Bradesco",
+    "name": "Bradesco Premium PGBL/VGBL",
+    "cnpj": "28.428.077/0001-86"
+  },
+  {
+    "institution": "Itaú",
+    "name": "Itaú Flexprev Privilège DI",
+    "cnpj": "40.413.765/0001-78"
+  },
+  {
+    "institution": "XP",
+    "name": "XP Trend Pós-fixado XP Seguros Prev",
+    "cnpj": "33.784.231/0001-92"
+  },
+  {
+    "institution": "BTG",
+    "name": "BTG Tesouro Selic Previdência",
+    "cnpj": "29.078.039/0001-03"
+  },
+  {
+    "institution": "Bradesco",
+    "name": "Bradesco Ultra PGBL/VGBL",
+    "cnpj": "44.703.501/0001-00"
+  },
+  {
+    "institution": "Safra",
+    "name": "Safra Prev Capital Market",
+    "cnpj": "19.390.898/0001-80"
+  },
+  {
+    "institution": "Safra",
+    "name": "Safra Prev Vitesse",
+    "cnpj": "37.332.819/0001-66"
+  },
+  {
+    "institution": "Safra",
+    "name": "Safra Prev Capital Market VIP",
+    "cnpj": "19.390.999/0001-50"
+  },
+  {
+    "institution": "Bradesco",
+    "name": "Bradesco Private Performance PGBL/VGBL",
+    "cnpj": "32.312.116/0001-52"
+  },
+  {
+    "institution": "Bradesco",
+    "name": "Bradesco Private PB PGBL/VGBL",
+    "cnpj": "17.517.380/0001-39"
+  },
+  {
+    "institution": "Bradesco",
+    "name": "Bradesco A PGBL/VGBL Renda Fixa",
+    "cnpj": "14.159.055/0001-53"
+  },
+  {
+    "institution": "XP",
+    "name": "XP ARX Denali XP Seguros Prev",
+    "cnpj": "32.318.938/0001-40"
+  },
+  {
+    "institution": "XP",
+    "name": "XP Kinea Alpes Prev XP Seguros",
+    "cnpj": "43.636.203/0001-81"
+  },
+  {
+    "institution": "XP",
+    "name": "XP AZ Quest Luce Advisory Prev XP",
+    "cnpj": "32.847.001/0001-62"
+  },
+  {
+    "institution": "BTG",
+    "name": "BTG Crédito Corporativo II Previdência",
+    "cnpj": "44.025.282/0001-57"
+  },
+  {
+    "institution": "BTG",
+    "name": "BTG ACS Absolute Atenas Prev",
+    "cnpj": "47.564.734/0001-67"
+  },
+  {
+    "institution": "BTG",
+    "name": "BTG CDB Plus Previdência",
+    "cnpj": "47.564.915/0001-93"
+  },
+  {
+    "institution": "Itaú",
+    "name": "Itaú Flexprev High Yield II",
+    "cnpj": "42.860.483/0001-44"
+  },
+  {
+    "institution": "Itaú",
+    "name": "Itaú Kinea Prev Apolo Itaú",
+    "cnpj": "32.903.873/0001-09"
+  },
+  {
+    "institution": "Itaú",
+    "name": "Itaú Flexprev High Yield",
+    "cnpj": "29.259.706/0001-54"
+  }
+];const selected=[null,null];const $=id=>document.getElementById(id);let report=null,busy=false;
 const normalize=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
-function matches(f,q){return normalize(f.name+' '+f.cnpj).includes(normalize(q))}
-function choose(f,i){selected[i-1]=f;$('q'+i).value=f.name;$('picked'+i).textContent='CNPJ '+f.cnpj;$('s'+i).hidden=true;invalidate();renderGrade()}
-function invalidate(){lastPayload=null;$('pdf').disabled=true;$('results').style.display='none'}
-function suggestions(i){const box=$('s'+i);box.replaceChildren();const rows=FUNDS.filter(f=>matches(f,$('q'+i).value));for(const f of rows){const b=document.createElement('button');b.type='button';b.textContent=f.name+' — '+f.cnpj;b.onclick=()=>choose(f,i);box.appendChild(b)}if(!rows.length){box.textContent='Nenhum fundo na grade com essa busca.'}box.hidden=false}
+const matches=(f,q)=>normalize(f.name+' '+f.cnpj).includes(normalize(q));const money=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});const num=v=>v==null?'N/D':v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});const pct=v=>v==null?'N/D':num(v)+'%';const date=s=>s.split('-').reverse().join('/');
+function status(msg,err=false){$('status').hidden=false;$('status').textContent=msg;$('status').className='status'+(err?' error':'')}
+function invalidate(){report=null;$('pdf').disabled=true;$('results').hidden=true}
+function choose(f,i){if(busy)return;selected[i-1]=f;$('q'+i).value=f.name;$('picked'+i).textContent='CNPJ '+f.cnpj;$('s'+i).hidden=true;invalidate();renderGrade()}
+function suggestions(i){const box=$('s'+i);box.replaceChildren();const rows=FUNDS.filter(f=>matches(f,$('q'+i).value));for(const f of rows){const b=document.createElement('button');b.type='button';b.textContent=f.name+' — '+f.cnpj;b.onclick=()=>choose(f,i);box.appendChild(b)}if(!rows.length)box.textContent='Nenhum fundo encontrado na grade.';box.hidden=false}
 for(let i=1;i<=2;i++){$('q'+i).addEventListener('input',()=>{selected[i-1]=null;$('picked'+i).textContent='Nenhum fundo selecionado';invalidate();suggestions(i);renderGrade()});$('q'+i).addEventListener('focus',()=>suggestions(i));$('q'+i).addEventListener('keydown',e=>{if(e.key==='Escape')$('s'+i).hidden=true})}
-document.addEventListener('click',e=>{for(let i=1;i<=2;i++){if(e.target!==$('q'+i)&&!$('s'+i).contains(e.target))$('s'+i).hidden=true}});
-function renderGrade(){const rows=FUNDS.filter(f=>(!$('institution').value||f.institution===$('institution').value)&&matches(f,$('grade-query').value));$('grade-count').textContent=rows.length+' de '+FUNDS.length+' fundos';const body=$('grade-body');body.replaceChildren();for(const f of rows){const tr=document.createElement('tr');for(const text of [f.name,f.cnpj]){const td=document.createElement('td');td.textContent=text;tr.appendChild(td)}const td=document.createElement('td');const actions=document.createElement('div');actions.className='fund-actions';for(let i=1;i<=2;i++){const b=document.createElement('button');b.type='button';b.className='secondary';b.textContent=(selected[i-1]?.cnpj===f.cnpj?'✓ ':'')+'Fundo '+i;b.setAttribute('aria-label','Selecionar '+f.name+' como Fundo '+i);b.onclick=()=>choose(f,i);actions.appendChild(b)}td.appendChild(actions);tr.appendChild(td);body.appendChild(tr)}if(!rows.length){const tr=document.createElement('tr');const td=document.createElement('td');td.colSpan=3;td.textContent='Nenhum fundo encontrado. Tente outro nome ou limpe o filtro.';tr.appendChild(td);body.appendChild(tr)}}
-$('grade-query').addEventListener('input',renderGrade);$('institution').addEventListener('change',renderGrade);$('end').addEventListener('change',invalidate);$('windows').addEventListener('change',invalidate);renderGrade();
-function payload(){let a=selected[0],b=selected[1];if(!a||!b)throw Error('Selecione os dois fundos na lista de resultados.');if(a.cnpj===b.cnpj)throw Error('Selecione dois fundos diferentes.');const windows=[...document.querySelectorAll('#windows input:checked')].map(x=>Number(x.value));if(!windows.length)throw Error('Selecione ao menos uma janela.');return {fund1:a.cnpj,fund2:b.cnpj,name1:a.name,name2:b.name,end:$('end').value,windows}}
-async function submit(url,asPdf){let p=payload();const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});if(!res.ok){let j=await res.json();throw Error(j.error||'Falha na consulta')}return asPdf?res.blob():res.json()}
-$('run').onclick=async()=>{try{const p=payload();$('run').disabled=true;$('pdf').disabled=true;status('Consultando arquivos mensais da CVM. Para janelas longas, aguarde alguns minutos...');const j=await submit('/api/compare',false);$('tbody').replaceChildren();for(const row of j.rows){const tr=document.createElement('tr');let vals=row.funds.map(f=>f.return_pct===undefined?'Indisponível':(f.return_pct>=0?'+':'')+f.return_pct.toFixed(2)+'%');let dates=row.funds.map(f=>f.start?f.start+' a '+f.end:'N/D');for(const v of [row.months+' meses',...vals,dates.join(' / ')]){const td=document.createElement('td');td.textContent=v;tr.appendChild(td)}$('tbody').appendChild(tr)}$('results').style.display='block';lastPayload=p;$('pdf').disabled=false;status('Consulta concluída. Confira os períodos efetivamente observados.')}catch(e){status(e.message,true)}finally{$('run').disabled=false}};
-$('pdf').onclick=async()=>{try{$('pdf').disabled=true;status('Preparando PDF...');const blob=await submit('/api/pdf',true);const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='comparativo-previdencia.pdf';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status('PDF gerado.')}catch(e){status(e.message,true)}finally{$('pdf').disabled=false}};
+document.addEventListener('click',e=>{for(let i=1;i<=2;i++)if(e.target!==$('q'+i)&&!$('s'+i).contains(e.target))$('s'+i).hidden=true});
+function renderGrade(){const rows=FUNDS.filter(f=>(!$('institution').value||f.institution===$('institution').value)&&matches(f,$('grade-query').value));$('grade-count').textContent=rows.length+' de '+FUNDS.length+' fundos';const body=$('grade-body');body.replaceChildren();for(const f of rows){const tr=document.createElement('tr');for(const text of [f.name,f.cnpj]){const td=document.createElement('td');td.textContent=text;tr.appendChild(td)}const td=document.createElement('td');const actions=document.createElement('div');actions.className='fund-actions';for(let i=1;i<=2;i++){const b=document.createElement('button');b.type='button';b.className='secondary';b.disabled=busy;b.textContent=(selected[i-1]?.cnpj===f.cnpj?'✓ ':'')+'Fundo '+i;b.setAttribute('aria-label','Selecionar '+f.name+' como Fundo '+i);b.onclick=()=>choose(f,i);actions.appendChild(b)}td.appendChild(actions);tr.appendChild(td);body.appendChild(tr)}if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=3;td.textContent='Nenhum fundo encontrado. Limpe o filtro ou tente outro nome.';tr.appendChild(td);body.appendChild(tr)}}
+$('grade-query').oninput=renderGrade;$('institution').onchange=renderGrade;for(const id of ['end','horizon','target'])$(id).addEventListener('input',invalidate);renderGrade();
+function payload(){if(!selected[0]||!selected[1])throw Error('Selecione dois fundos na lista.');if(selected[0].cnpj===selected[1].cnpj)throw Error('Selecione dois fundos diferentes.');if(!$('target').checkValidity()||!Number($('target').value))throw Error('Informe um patrimônio final válido.');return {fund1:selected[0].cnpj,fund2:selected[1].cnpj,end:$('end').value,horizon:Number($('horizon').value),target:Number($('target').value)}}
+function cellRow(parent,values){const tr=document.createElement('tr');values.forEach((v,i)=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});parent.appendChild(tr)}
+function chart(r){const NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox','0 0 960 330');svg.classList.add('chart');svg.setAttribute('role','img');svg.setAttribute('aria-label','Gráfico de rentabilidade acumulada dos dois fundos e CDI');const rows=r.curve,values=rows.flatMap(p=>p.values.concat(p.cdi==null?[]:[p.cdi]));let lo=Math.min(0,...values),hi=Math.max(...values),pad=Math.max((hi-lo)*.08,.1);lo-=pad;hi+=pad;const y=v=>285-(v-lo)/(hi-lo)*260,x=i=>65+i/(rows.length-1)*875;function el(tag,attrs,text){const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text)n.textContent=text;svg.appendChild(n);return n}for(let i=0;i<5;i++){const v=lo+(hi-lo)*i/4;el('line',{x1:65,x2:940,y1:y(v),y2:y(v),stroke:'#e2e8f0'});el('text',{x:55,y:y(v)+4,'text-anchor':'end',fill:'#64748b','font-size':12},num(v)+'%')}['#1463b8','#0d9488','#64748b'].forEach((color,k)=>{if(k===2&&rows[0].cdi==null)return;el('polyline',{points:rows.map((p,i)=>x(i)+','+y(k<2?p.values[k]:p.cdi)).join(' '),fill:'none',stroke:color,'stroke-width':k<2?2.5:1.5,'stroke-dasharray':k===2?'6 4':'none'})});for(const i of [0,Math.floor((rows.length-1)/2),rows.length-1])el('text',{x:x(i),y:315,'text-anchor':i===0?'start':i===rows.length-1?'end':'middle',fill:'#64748b','font-size':12},date(rows[i].date));$('chart').replaceChildren(svg)}
+function render(r){$('period').textContent=date(r.start)+' a '+date(r.end);$('cards').replaceChildren();$('legend').replaceChildren();$('capital').replaceChildren();r.funds.forEach((f,i)=>{const s=r.stats[i],card=document.createElement('article');card.className='card';const title=document.createElement('h3');title.textContent=f.name;card.appendChild(title);const c=document.createElement('small');c.textContent='CNPJ '+f.cnpj;card.appendChild(c);const content=document.createElement('div');content.innerHTML='<p class="big '+(i?'teal':'blue')+'">'+pct(s.return_pct)+'</p><small>Retorno acumulado</small><div class="metrics"><div class="metric">'+pct(s.annualized)+'<small>Retorno anualizado</small></div><div class="metric">'+pct(s.volatility)+'<small>Volatilidade anualizada</small></div><div class="metric">'+num(s.sharpe)+'<small>Sharpe anualizado · CDI</small></div></div>';card.appendChild(content);$('cards').appendChild(card);const legend=document.createElement('span'),dot=document.createElement('i');dot.className='dot';dot.style.background=i?'#0d9488':'#1463b8';legend.append(dot,document.createTextNode('Fundo '+(i+1)+' · '+f.name));$('legend').appendChild(legend);const cap=document.createElement('div');cap.className='target-card';const label=document.createElement('span');label.textContent=f.name;const val=document.createElement('strong');val.textContent=money(s.required_initial);const detail=document.createElement('small');detail.textContent='Ganho nominal no período: '+money(s.gain);cap.append(label,val,detail);$('capital').appendChild(cap)});const cdi=document.createElement('span');cdi.textContent='CDI · '+pct(r.cdi_return);$('legend').appendChild(cdi);chart(r);$('risk-note').textContent=r.risk_complete?'Indicadores calculados sobre retornos diários, com CDI como referência e 252 dias úteis ao ano.':'Indicadores de risco indisponíveis: histórico diário insuficiente ou lacunas em relação ao CDI. Não foram preenchidos dados ausentes.';$('target-description').textContent='Para alcançar '+money(r.target)+' em '+date(r.end)+', com uma única aplicação em '+date(r.start)+':';$('summary').replaceChildren();r.summary.forEach(x=>cellRow($('summary'),[x.months+' meses',...x.returns.map(pct),x.returns[0]==null?'Histórico insuficiente':date(x.start)+' a '+date(x.end)]));$('monthly').replaceChildren();r.monthly.forEach(x=>cellRow($('monthly'),[x.month.slice(5)+'/'+x.month.slice(0,4)+(x.partial?' *':''),...x.values.map(pct),pct(x.cdi)]));$('updated').textContent='Base atualizada em '+date(r.updated_at.slice(0,10))+' (UTC). '+r.observations+' cotas comuns no período. Janela solicitada: '+date(r.start_requested)+' a '+date(r.end_requested)+'.';$('results').hidden=false}
+function setBusy(v){busy=v;for(const id of ['q1','q2','end','horizon','target','run'])$(id).disabled=v;renderGrade()}
+$('run').onclick=async()=>{try{const p=payload();invalidate();setBusy(true);status('Calculando indicadores na base de cotas...');const started=performance.now();const res=await fetch('/api/compare',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}),j=await res.json();if(!res.ok)throw Error(j.error||'Falha na comparação.');report=j;render(j);$('pdf').disabled=false;status('Comparação pronta em '+((performance.now()-started)/1000).toFixed(1)+' s. O PDF usa este mesmo resultado.')}catch(e){status(e.message,true)}finally{setBusy(false)}};
+$('pdf').onclick=async()=>{if(!report)return;try{$('pdf').disabled=true;status('Gerando relatório visual...');const res=await fetch('/api/pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({report_id:report.report_id})});if(!res.ok){const j=await res.json();throw Error(j.error||'Falha ao gerar PDF.')}const url=URL.createObjectURL(await res.blob()),a=document.createElement('a');a.href=url;a.download='comparativo-previdencia.pdf';a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);status('Relatório PDF gerado.')}catch(e){status(e.message,true)}finally{$('pdf').disabled=!report}};
 </script></body></html>
-
