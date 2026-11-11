@@ -5,7 +5,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,Table,TableStyle,PageBreak,Flowable,KeepTogether
-NAVY=colors.HexColor('#142d4e');BLUE=colors.HexColor('#1463b8');TEAL=colors.HexColor('#0d9488');GRAY=colors.HexColor('#64748b')
+NAVY=colors.HexColor('#142d4e');BLUE=colors.HexColor('#1463b8');TEAL=colors.HexColor('#d95f02');GRAY=colors.HexColor('#64748b')
 def num(v,n=2):return 'N/D' if v is None else f'{v:,.{n}f}'.replace(',','X').replace('.',',').replace('X','.')
 def pct(v):return num(v)+'%' if v is not None else 'N/D'
 def money(v):return 'R$ '+num(v)
@@ -14,19 +14,19 @@ class Chart(Flowable):
     def __init__(self,r):Flowable.__init__(self);self.r=r;self.width=17.2*cm;self.height=7.1*cm
     def draw(self):
         c=self.canv; rows=self.r['curve'];left=38;bottom=26;w=self.width-left-8;h=self.height-bottom-15
-        vals=[v for p in rows for v in p['values']]+[p['cdi'] for p in rows if p['cdi'] is not None];lo=min(0,min(vals));hi=max(vals);pad=max((hi-lo)*.08,.1);lo-=pad;hi+=pad
+        vals=[v for p in rows for v in p['values']]+[p['cdi'] for p in rows if p['cdi'] is not None];lo=min(0,min(vals));hi=max(vals);pad=max((hi-lo)*.03,.1);lo-=pad;hi+=pad
         def y(v):return bottom+(v-lo)/(hi-lo)*h
         c.setFont('Helvetica',8)
         for i in range(5):
             v=lo+(hi-lo)*i/4;yy=y(v);c.setStrokeColor(colors.HexColor('#e2e8f0'));c.line(left,yy,left+w,yy);c.setFillColor(GRAY);c.drawRightString(left-5,yy-3,num(v,1)+'%')
-        for idx,col in [(0,BLUE),(1,TEAL),(2,GRAY)]:
+        for idx,col in [(2,GRAY),(0,BLUE),(1,TEAL)]:
             if idx==2 and rows[-1]['cdi'] is None:continue
             path=c.beginPath()
             for i,p in enumerate(rows):
                 v=p['values'][idx] if idx<2 else p['cdi'];xx=left+w*i/max(len(rows)-1,1)
                 if i==0:path.moveTo(xx,y(v))
                 else:path.lineTo(xx,y(v))
-            c.setStrokeColor(col);c.setLineWidth(1.8 if idx<2 else 1);c.setDash(3,2) if idx==2 else c.setDash();c.drawPath(path)
+            c.setStrokeColor(col);c.setLineWidth(.95 if idx<2 else .7);c.setDash();c.drawPath(path)
         c.setDash();c.setFillColor(GRAY);c.drawString(left,8,dt(rows[0]['date']));c.drawRightString(left+w,8,dt(rows[-1]['date']))
 def build(r):
     buf=io.BytesIO(); styles=getSampleStyleSheet()
@@ -44,8 +44,8 @@ def build(r):
     names=[f['name'] for f in r['funds']]
     headers=[p(escape(n),'HeaderBR') for n in names]
     a,b=r['stats'];story=[p('PREVIDÊNCIA | ANÁLISE HISTÓRICA','SmallBR'),p('Seu patrimônio,\n em perspectiva'.replace('\n','<br/>'),'TitleBR'),p(f"Janela de {r['horizon']} meses | {dt(r['start'])} a {dt(r['end'])}")]
-    for i,f in enumerate(r['funds']):story.append(p(f'<font color="{["#1463b8","#0d9488"][i]}"><b>{escape(f["name"])}</b></font><br/><font size="8">CNPJ {f["cnpj"]}</font>'))
-    story += [p('Crescimento acumulado','HeadBR'),p(f'<font color="#1463b8">{escape(names[0])}</font> | <font color="#0d9488">{escape(names[1])}</font> | CDI: cinza tracejado','SmallBR'),Chart(r),table([['Indicador',*headers],['Retorno acumulado',pct(a['return_pct']),pct(b['return_pct'])],['Retorno anualizado',pct(a['annualized']),pct(b['annualized'])],['Volatilidade anualizada',pct(a['volatility']),pct(b['volatility'])],['Sharpe anualizado (CDI)',num(a['sharpe']),num(b['sharpe'])]],[7.2*cm,5*cm,5*cm]),Spacer(1,10),p('Rentabilidade passada não garante rentabilidade futura. Comparação informativa, sem recomendação individual de investimento.','SmallBR'),PageBreak()]
+    for i,f in enumerate(r['funds']):story.append(p(f'<font color="{["#1463b8","#d95f02"][i]}"><b>{escape(f["name"])}</b></font><br/><font size="8">CNPJ {f["cnpj"]}</font>'))
+    story += [p('Crescimento acumulado','HeadBR'),p(f'<font color="#1463b8">{escape(names[0])}</font> | <font color="#d95f02">{escape(names[1])}</font> | CDI: cinza','SmallBR'),Chart(r),table([['Indicador',*headers],['Retorno acumulado',pct(a['return_pct']),pct(b['return_pct'])],['Retorno anualizado',pct(a['annualized']),pct(b['annualized'])],['Volatilidade anualizada',pct(a['volatility']),pct(b['volatility'])],['Sharpe anualizado (CDI)',num(a['sharpe']),num(b['sharpe'])]],[7.2*cm,5*cm,5*cm]),Spacer(1,10),p('Rentabilidade passada não garante rentabilidade futura. Comparação informativa, sem recomendação individual de investimento.','SmallBR'),PageBreak()]
     story += [p('Quanto precisaria ter investido?','TitleBR'),p(f'Para alcançar <b>{money(r["target"])}</b> em {dt(r["end"])}, com uma única aplicação em {dt(r["start"])}, o valor inicial seria:'),table([['Simulação histórica',*headers],['Aplicação inicial necessária',money(a['required_initial']),money(b['required_initial'])],['Ganho nominal no período',money(a['gain']),money(b['gain'])],['Patrimônio final desejado',money(r['target']),money(r['target'])]],[7.2*cm,5*cm,5*cm]),Spacer(1,12),p('Cálculo: patrimônio final desejado ÷ (1 + retorno acumulado). Sem aportes ou resgates intermediários. Valores nominais: sem ajuste pela inflação, IR, carregamento ou outras condições individuais do plano. As despesas debitadas do fundo já estão refletidas na cota. Esta é uma reconstrução histórica, não uma projeção.'),p('Outras janelas de comparação','HeadBR'),table([['Janela',*headers,'Período comum']]+[[f'{x["months"]} meses',pct(x['returns'][0]),pct(x['returns'][1]),dt(x['start'])+' a '+dt(x['end']) if all(v is not None for v in x['returns']) else 'Histórico insuficiente'] for x in r['summary']],[2*cm,3.3*cm,3.3*cm,8.6*cm]),p('N/D indica ausência de histórico comum suficiente. A análise não completa cotas ausentes com estimativas.','SmallBR'),PageBreak(),p('Rentabilidade mês a mês','TitleBR'),p('Retornos compostos pela variação das cotas entre as datas observadas. Meses parciais identificados com asterisco.','SmallBR')]
     months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
     years=sorted({x['month'][:4] for x in r['monthly']},reverse=True)
