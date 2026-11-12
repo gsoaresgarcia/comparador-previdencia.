@@ -11,16 +11,16 @@ def pct(v):return num(v)+'%' if v is not None else 'N/D'
 def money(v):return 'R$ '+num(v)
 def dt(d):return '/'.join(reversed(d.split('-')))
 class Chart(Flowable):
-    def __init__(self,r):Flowable.__init__(self);self.r=r;self.width=17.2*cm;self.height=7.1*cm
+    def __init__(self,r,show_cdi=True):Flowable.__init__(self);self.r=r;self.show_cdi=show_cdi;self.width=17.2*cm;self.height=7.1*cm
     def draw(self):
         c=self.canv; rows=self.r['curve'];left=38;bottom=26;w=self.width-left-8;h=self.height-bottom-15
-        vals=[v for p in rows for v in p['values']]+[p['cdi'] for p in rows if p['cdi'] is not None];lo=min(0,min(vals));hi=max(vals);pad=max((hi-lo)*.03,.1);lo-=pad;hi+=pad
+        vals=[v for p in rows for v in p['values']]+[p['cdi'] for p in rows if self.show_cdi and p['cdi'] is not None];lo=min(0,min(vals));hi=max(vals);pad=max((hi-lo)*.03,.1);lo-=pad;hi+=pad
         def y(v):return bottom+(v-lo)/(hi-lo)*h
         c.setFont('Helvetica',8)
         for i in range(5):
             v=lo+(hi-lo)*i/4;yy=y(v);c.setStrokeColor(colors.HexColor('#e2e8f0'));c.line(left,yy,left+w,yy);c.setFillColor(GRAY);c.drawRightString(left-5,yy-3,num(v,1)+'%')
         for idx,col in [(2,colors.black),(0,BLUE),(1,TEAL)]:
-            if idx==2 and rows[-1]['cdi'] is None:continue
+            if idx==2 and (not self.show_cdi or rows[-1]['cdi'] is None):continue
             path=c.beginPath()
             for i,p in enumerate(rows):
                 v=p['values'][idx] if idx<2 else p['cdi'];xx=left+w*i/max(len(rows)-1,1)
@@ -35,7 +35,7 @@ def options_for(obj=None):
     if not isinstance(windows,list) or not windows or any(type(v) is not int or v not in [12,24,36,48] for v in windows):
         raise ValueError('Selecione pelo menos um período: 12, 24, 36 ou 48 meses.')
     out={'windows':sorted(set(windows))}
-    for key,default in [('chart',True),('capital',True),('risk',False),('monthly',False)]:
+    for key,default in [('chart',True),('chart_cdi',True),('capital',True),('risk',False),('monthly',False)]:
         value=obj.get(key,default)
         if type(value) is not bool: raise ValueError('Seleção de seções inválida.')
         out[key]=value
@@ -70,7 +70,7 @@ def build(r,options=None):
         insight=(f'Nos {x["months"]} meses selecionados, <b>{escape(names[0 if diff>0 else 1])}</b> apresentou retorno {num(abs(diff))} pontos percentuais superior ao outro fundo.' if abs(diff)>=.005 else f'Nos {x["months"]} meses selecionados, os fundos tiveram retornos semelhantes.')
         story.append(p(insight+' O histórico é um dos elementos da decisão; risco, prazo e condições do plano também importam.'))
     if o['chart']:
-        story += [p('A trajetória do patrimônio','Head'),p(f'Histórico de {r["horizon"]} meses | {dt(r["start"])} a {dt(r["end"])}.','Small'),p(f'<font color="#1463b8">{escape(names[0])}</font> | <font color="#d95f02">{escape(names[1])}</font> | <font color="#000000">CDI</font>','Small'),Chart(r)]
+        story += [p('A trajetória do patrimônio','Head'),p(f'Histórico de {r["horizon"]} meses | {dt(r["start"])} a {dt(r["end"])}.','Small'),p(f'<font color="#1463b8">{escape(names[0])}</font> | <font color="#d95f02">{escape(names[1])}</font>' + (' | <font color="#000000">CDI</font>' if o['chart_cdi'] else ''),'Small'),Chart(r,show_cdi=o['chart_cdi'])]
     story.append(p('Rentabilidade passada não garante resultados futuros. Os períodos foram selecionados para esta apresentação e não representam todo o histórico dos fundos.','Small'))
     if o['capital'] or o['risk']:
         story += [PageBreak(),p('Da comparação à sua decisão','Title')]
