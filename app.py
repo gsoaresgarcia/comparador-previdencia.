@@ -12,7 +12,7 @@ REPORTS=OrderedDict();LOCK=threading.Lock()
 def home():
     data=read();maybe_refresh()
     dates=[max(s) for s in data['funds'].values() if s];default=min(date.today().isoformat(),max(dates))
-    return render_template('index.html',today=date.today().isoformat(),default_end=default)
+    return render_template('index.html',today=date.today().isoformat(),default_end=default,funds=list(FUNDS.values()),institutions=sorted({f['institution'] for f in FUNDS.values()}))
 @app.get('/health')
 def health():return jsonify(status='ok',version='2.0',updated_at=read()['updated_at'])
 @app.get('/api/search')

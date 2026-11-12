@@ -18,7 +18,9 @@ def get(url):
 
 def month(ym):
     cache=ROOT/'data_months'/f'{ym}.json'
-    if cache.exists(): return json.loads(cache.read_text())
+    if cache.exists():
+        cached=json.loads(cache.read_text())
+        if IDS.issubset(cached): return cached
     points={c:{} for c in IDS}
     content=get(BASE+f'inf_diario_fi_{ym}.zip')
     with zipfile.ZipFile(io.BytesIO(content)) as z:
@@ -58,7 +60,7 @@ def refresh():
         data={'funds':{c:dict(v) for c,v in old['funds'].items()},'cdi':dict(old['cdi']),'updated_at':old['updated_at']}
         for ym in [prior.strftime('%Y%m'),now.strftime('%Y%m')]:
             (ROOT/'data_months'/f'{ym}.json').unlink(missing_ok=True)
-            for c,values in month(ym).items():data['funds'][c].update(values)
+            for c,values in month(ym).items():data['funds'].setdefault(c,{}).update(values)
         data['cdi'].update(cdi(prior.replace(day=1),now));data['updated_at']=datetime.now(timezone.utc).isoformat()
         save(data)
         with LOCK: STATE=data

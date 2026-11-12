@@ -76,7 +76,15 @@ def build(r,options=None):
         story += [PageBreak(),p('Da comparação à sua decisão','Title')]
     a,b=r['stats']
     if o['capital']:
-        story += [p('Quanto seria necessário investir?','Head'),p(f'Para chegar a <b>{money(r["target"])}</b> em {dt(r["end"])}, quanto teria sido necessário aplicar em {dt(r["start"])}?'),table([['Simulação histórica',*headers],['Aplicação inicial',money(a['required_initial']),money(b['required_initial'])],['Ganho no período',money(a['gain']),money(b['gain'])],['Patrimônio ao final',money(r['target']),money(r['target'])]],[5.2*cm,6*cm,6*cm]),p('Uma aplicação única, sem aportes ou resgates. Valores nominais, antes do IR e das condições individuais do plano; sem ajuste pela inflação. É uma reconstrução do passado, não uma promessa de ganho.','Small')]
+        story += [p('Quanto seria necessário investir?','Head'),p(f'Aplicação inicial necessária para alcançar <b>{money(r["target"])}</b>, usando o retorno de cada período selecionado abaixo.')]
+        rows=[['Período',*headers]]
+        for x in windows:
+            dates=dt(x['start'])+' a '+dt(x['end']) if x['start'] and x['end'] else 'Histórico insuficiente'
+            cells=[p(str(x['months'])+' meses<br/><font size="7">'+dates+'</font>')]
+            for v in x['returns']:
+                cells.append(p('<b>'+money(r['target']/(1+v/100))+'</b><br/><font size="8">Retorno: '+pct(v)+'</font>') if v is not None else 'N/D')
+            rows.append(cells)
+        story += [table(rows,[5.2*cm,6*cm,6*cm]),p('Retorno e aplicação inicial usam exatamente as mesmas datas em cada linha. Uma aplicação única, sem aportes ou resgates. Valores nominais, antes do IR e das condições individuais do plano; sem ajuste pela inflação. É uma reconstrução do passado, não uma promessa de ganho.','Small')]
     if o['risk']:
         story += [Spacer(1,8),p('Retorno e risco, lado a lado','Head'),p(f'Indicadores de {dt(r["start"])} a {dt(r["end"])}.','Small'),table([['Indicador',*headers],['Retorno anualizado',pct(a['annualized']),pct(b['annualized'])],['Volatilidade anualizada',pct(a['volatility']),pct(b['volatility'])],['Sharpe anualizado (CDI)',num(a['sharpe']),num(b['sharpe'])]],[5.2*cm,6*cm,6*cm]),p('Volatilidade indica quanto o retorno oscilou. Sharpe relaciona o retorno acima do CDI ao risco assumido; valores negativos indicam excesso médio negativo no período.','Small')]
     story += [Spacer(1,10),p('Vamos conversar sobre sua previdência?','Head'),p('No atendimento Santander, podemos avaliar como sua previdência se encaixa nos seus objetivos, no prazo de investimento e no seu perfil. Antes de qualquer decisão, vamos conferir taxas, tributação, carências e condições do plano.')]

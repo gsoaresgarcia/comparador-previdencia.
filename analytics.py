@@ -29,6 +29,8 @@ def compute(obj):
     for m in WINDOWS:
         s=boundary(end-relativedelta(months=m))
         summary.append({'months':m,'start':s,'end':last,'returns':[(x[last]/x[s]-1)*100 for x in series] if s and last and s<last else [None,None]})
+    for x in summary:
+        x['required_initial']=[target/(1+v/100) if v is not None else None for v in x['returns']]
     report={'funds':[FUNDS[c] for c in ids],'end_requested':end.isoformat(),'start_requested':desired.isoformat(),'horizon':horizon,'target':target,'updated_at':data['updated_at'],'summary':summary,'latest_available':[max(x) if x else None for x in series]}
     if not first or not last or first>=last:
         raise ValueError('Não há cotas comuns suficientes para esse período. Tente uma janela menor ou uma data anterior. Últimas cotas: '+', '.join(str(x) for x in report['latest_available']))

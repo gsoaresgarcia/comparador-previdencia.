@@ -7,7 +7,10 @@
   {
     "institution": "Santander",
     "name": "Santander DI VIP",
-    "cnpj": "34.246.392/0001-95"
+    "cnpj": "34.246.392/0001-95",
+    "official_name": "SANTANDER PREV VIP RENDA FIXA REFERENCIADO DI - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
@@ -17,22 +20,34 @@
   {
     "institution": "Santander",
     "name": "Santander Conservador PB",
-    "cnpj": "17.138.471/0001-63"
+    "cnpj": "17.138.471/0001-63",
+    "official_name": "SANTANDER PREV PB CONSERVADOR RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
     "name": "Santander Crescimento VIP Crédito Privado",
-    "cnpj": "34.246.519/0001-76"
+    "cnpj": "34.246.519/0001-76",
+    "official_name": "SANTANDER PREV CRESCIMENTO VIP RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
     "name": "Santander PB Renda Fixa Crédito Privado",
-    "cnpj": "18.599.388/0001-54"
+    "cnpj": "18.599.388/0001-54",
+    "official_name": "SANTANDER PREV PB RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
     "name": "Santander Dinâmico Renda Fixa Crédito Privado",
-    "cnpj": "34.246.353/0001-98"
+    "cnpj": "34.246.353/0001-98",
+    "official_name": "SANTANDER PREV DINÂMICO RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
@@ -42,27 +57,42 @@
   {
     "institution": "Santander",
     "name": "Santander XVIII Renda Fixa Crédito Privado",
-    "cnpj": "20.977.437/0001-97"
+    "cnpj": "20.977.437/0001-97",
+    "official_name": "SANTANDER PREV XVIII RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
     "name": "Santander Fix Executivo",
-    "cnpj": "03.534.936/0001-90"
+    "cnpj": "03.534.936/0001-90",
+    "official_name": "SANTANDER PREV FIX EXECUTIVO RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
     "name": "Santander Multiestratégia CP LP",
-    "cnpj": "43.926.150/0001-33"
+    "cnpj": "43.926.150/0001-33",
+    "official_name": "SANTANDER PREV MULTIESTRATÉGIA RENDA FIXA CRÉDITO PRIVADO LONGO PRAZO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
     "name": "Santander Ultra",
-    "cnpj": "22.918.315/0001-55"
+    "cnpj": "22.918.315/0001-55",
+    "official_name": "SANTANDER PREV ULTRA RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
     "name": "Santander Super",
-    "cnpj": "17.803.961/0001-37"
+    "cnpj": "17.803.961/0001-37",
+    "official_name": "SANTANDER PREV SUPER RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Santander",
@@ -97,17 +127,26 @@
   {
     "institution": "Bradesco",
     "name": "Bradesco Premium PGBL/VGBL",
-    "cnpj": "28.428.077/0001-86"
+    "cnpj": "28.428.077/0001-86",
+    "official_name": "BRADESCO PREMIUM PGBLVGBL FI FINANCEIRO - CIC RF CRED PRIV - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Itaú",
     "name": "Itaú Flexprev Privilège DI",
-    "cnpj": "40.413.765/0001-78"
+    "cnpj": "40.413.765/0001-78",
+    "official_name": "ITAÚ FLEXPREV PRIVILÈGE FIF CIC RF REFERENCIADO DI - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "XP",
     "name": "XP Trend Pós-fixado XP Seguros Prev",
-    "cnpj": "33.784.231/0001-92"
+    "cnpj": "33.784.231/0001-92",
+    "official_name": "TREND PÓS-FIXADO XP SEGUROS PREV FUNDO DE INVESTIMENTO EM COTAS RENDA FIXA RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "BTG",
@@ -127,37 +166,58 @@
   {
     "institution": "Safra",
     "name": "Safra Prev Vitesse",
-    "cnpj": "37.332.819/0001-66"
+    "cnpj": "37.332.819/0001-66",
+    "official_name": "SAFRA PREV VITESSE FIF PREVIDENCIÁRIO CIC RENDA FIXA CRÉDITO PRIVADO PREV RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Safra",
     "name": "Safra Prev Capital Market VIP",
-    "cnpj": "19.390.999/0001-50"
+    "cnpj": "19.390.999/0001-50",
+    "official_name": "SAFRA PREV CAPITAL MARKET VIP FIF PREVIDENCIÁRIO CIC RENDA FIXA CRÉDITO PRIVADO PREV RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Bradesco",
     "name": "Bradesco Private Performance PGBL/VGBL",
-    "cnpj": "32.312.116/0001-52"
+    "cnpj": "32.312.116/0001-52",
+    "official_name": "BRADESCO PRIVATE PERFORMANCE PGBL VGBL FI FINANCEIRO - CIC RF CRED PRIV - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Bradesco",
     "name": "Bradesco Private PB PGBL/VGBL",
-    "cnpj": "17.517.380/0001-39"
+    "cnpj": "17.517.380/0001-39",
+    "official_name": "BRADESCO PRIVATE PB PGBL VGBL FI FINANCEIRO - CIC RF CRED PRIV - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Bradesco",
     "name": "Bradesco A PGBL/VGBL Renda Fixa",
-    "cnpj": "14.159.055/0001-53"
+    "cnpj": "14.159.055/0001-53",
+    "official_name": "BRADESCO A PGBL/VGBL FUNDO DE INVESTIMENTO FINANCEIRO - CIC RENDA FIXA - RESPONSABILIDADE  LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "XP",
     "name": "XP ARX Denali XP Seguros Prev",
-    "cnpj": "32.318.938/0001-40"
+    "cnpj": "32.318.938/0001-40",
+    "official_name": "ARX DENALI XP SEGUROS PREV FIC RENDA FIXA CRÉDITO PRIVADO RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "XP",
     "name": "XP Kinea Alpes Prev XP Seguros",
-    "cnpj": "43.636.203/0001-81"
+    "cnpj": "43.636.203/0001-81",
+    "official_name": "KINEA ALPES PREV XP SEG FC MULTIMERCADO CRÉDITO PRIVADO RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "XP",
@@ -167,12 +227,18 @@
   {
     "institution": "BTG",
     "name": "BTG Crédito Corporativo II Previdência",
-    "cnpj": "44.025.282/0001-57"
+    "cnpj": "44.025.282/0001-57",
+    "official_name": "BTG PACTUAL CRÉDITO CORPORATIVO II PREVIDÊNCIA FIC DE FUNDO DE INVESTIMENTO FINANCEIRO MULTIMERCADO",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "BTG",
     "name": "BTG ACS Absolute Atenas Prev",
-    "cnpj": "47.564.734/0001-67"
+    "cnpj": "47.564.734/0001-67",
+    "official_name": "ACS ABSOLUTE ATENAS PREVIDÊNCIA FUNDO DE INVESTIMENTO FINANCEIRO MULTIMERCADO",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "BTG",
@@ -182,7 +248,10 @@
   {
     "institution": "Itaú",
     "name": "Itaú Flexprev High Yield II",
-    "cnpj": "42.860.483/0001-44"
+    "cnpj": "42.860.483/0001-44",
+    "official_name": "ITAÚ FLEXPREV HIGH YIELD II FIF CIC MULT CRED PRIV - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
   },
   {
     "institution": "Itaú",
@@ -192,6 +261,673 @@
   {
     "institution": "Itaú",
     "name": "Itaú Flexprev High Yield",
-    "cnpj": "29.259.706/0001-54"
+    "cnpj": "29.259.706/0001-54",
+    "official_name": "ITAÚ FLEXPREV HIGH YIELD FIF CIC RF CRED PRIV - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip"
+  },
+  {
+    "institution": "BTG",
+    "cnpj": "42.848.021/0001-01",
+    "official_name": "ARCA GRÃO PREVIDÊNCIA ACCESS CIC DE CLASSE DE INVESTIMENTO MULTIMERCADO - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "BTG · Arca Grão Previdência Access Multimercado"
+  },
+  {
+    "institution": "BTG",
+    "cnpj": "20.997.959/0001-50",
+    "official_name": "BTG PACTUAL YIELD PREVIDÊNCIA FIF EM COTAS DE FUNDOS DE INVESTIMENTO MULTIMERCADO",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "BTG Pactual Yield Previdência Multimercado"
+  },
+  {
+    "institution": "BTG",
+    "cnpj": "44.027.398/0001-25",
+    "official_name": "EMPIRICUS CRIPTO PREVIDÊNCIA 20 FUNDO DE INVESTIMENTO FINANCEIRO MULTIMERCADO",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "BTG · Empiricus Cripto Previdência 20 Multimercado"
+  },
+  {
+    "institution": "BTG",
+    "cnpj": "47.350.581/0001-55",
+    "official_name": "M8 CAPITAL PREVIDÊNCIA FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO RENDA FIXA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "BTG · M8 Capital Previdência Renda Fixa"
+  },
+  {
+    "institution": "Bradesco",
+    "cnpj": "34.123.613/0001-38",
+    "official_name": "BRADESCO BOLSA AMERICANA PGBL/VGBL FI FINANCEIRO - CIC MULT - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Bradesco Bolsa Americana PGBL/VGBL - Mult"
+  },
+  {
+    "institution": "Brasilprev",
+    "cnpj": "42.847.784/0001-38",
+    "official_name": "BRASILPREV PLUS FIC FIF RENDA FIXA CRÉDITO PRIVADO RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Brasilprev Plus Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Brasilprev",
+    "cnpj": "07.919.956/0001-30",
+    "official_name": "BRASILPREV RT FIX VI FIC FIF RENDA FIXA RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Brasilprev Rt Fix Vi Renda Fixa"
+  },
+  {
+    "institution": "Brasilprev",
+    "cnpj": "45.146.344/0001-41",
+    "official_name": "BRASILPREV RENDA FIXA ATIVA FUNDO DE INVESTIMENTO EM COTAS DE FIF RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Brasilprev Renda Fixa Ativa"
+  },
+  {
+    "institution": "Brasilprev",
+    "cnpj": "18.630.011/0001-10",
+    "official_name": "BRASILPREV RT CLÁSSICO FIC FIF RENDA FIXA RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Brasilprev Rt Clássico Renda Fixa"
+  },
+  {
+    "institution": "Brasilprev",
+    "cnpj": "05.061.121/0001-67",
+    "official_name": "BRASILPREV RT FIX C FIC DE FUNDOS DE INVESTIMENTO FINANCEIRO RENDA FIXA RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Brasilprev Rt Fix C Renda Fixa"
+  },
+  {
+    "institution": "Caixa",
+    "cnpj": "41.709.871/0001-66",
+    "official_name": "CAIXA PÓS FIXADO 180 PREVIDENCIÁRIO FIC DE CLASSE DE FIF RENDA FIXA - RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Caixa Pós Fixado 180 Previdenciário Renda Fixa"
+  },
+  {
+    "institution": "Caixa",
+    "cnpj": "16.877.592/0001-64",
+    "official_name": "CAIXA 80 PREVINVEST PREVIDENCIÁRIO FIC DE CLASSE DE FIF RENDA FIXA CRÉDITO PRIVADO - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Caixa 80 Previnvest Previdenciário Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Caixa",
+    "cnpj": "41.114.051/0001-21",
+    "official_name": "CAIXA PÓS FIXADO 150 PREVIDENCIÁRIO FIC DE CLASSE DE FIF RENDA FIXA - RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Caixa Pós Fixado 150 Previdenciário Renda Fixa"
+  },
+  {
+    "institution": "Caixa",
+    "cnpj": "13.058.729/0001-60",
+    "official_name": "CAIXA 200 PREVINVEST PREVIDENCIÁRIO FIC DE CLASSE DE FIF RENDA FIXA CRÉDITO PRIVADO - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Caixa 200 Previnvest Previdenciário Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Caixa",
+    "cnpj": "03.737.224/0001-79",
+    "official_name": "CAIXA 100 PREVIDENCIÁRIO FIC DE CLASSE DE FIF RENDA FIXA - RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Caixa 100 Previdenciário Renda Fixa"
+  },
+  {
+    "institution": "Icatu",
+    "cnpj": "53.741.028/0001-46",
+    "official_name": "AUDACITAS ICATU QUALIFICADO PREVIDÊNCIA FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO MUL",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Audacitas Icatu Qualificado Previdência Mul"
+  },
+  {
+    "institution": "Icatu",
+    "cnpj": "44.211.899/0001-67",
+    "official_name": "ATENA ICATU PREVIDÊNCIARIO FI EM COTAS DE FI FINANCEIRO RENDA FIXA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Atena Icatu Previdênciario Renda Fixa"
+  },
+  {
+    "institution": "Icatu",
+    "cnpj": "47.543.315/0001-49",
+    "official_name": "ONZE ICATU PREV FI FINANCEIRO - CIC RF CRED PRIV - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Onze Icatu Prev - RF Cred Priv"
+  },
+  {
+    "institution": "Icatu",
+    "cnpj": "46.685.502/0001-02",
+    "official_name": "ICATU VANGUARDA ABSOLUTO II FIF RENDA FIXA CRED PRIV PREVIDENCIÁRIO - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Icatu Vanguarda Absoluto II Renda Fixa Cred Priv Previdenciário"
+  },
+  {
+    "institution": "Icatu",
+    "cnpj": "45.511.290/0001-76",
+    "official_name": "UNICRED ICATU CONSERVADOR FOF PREVIDENCIÁRIO FC FIF MULT CRED PRIV -RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Unicred Icatu Conservador Fof Previdenciário Mult Cred Priv"
+  },
+  {
+    "institution": "Icatu",
+    "cnpj": "37.367.841/0001-41",
+    "official_name": "LEGACY CAPITAL PREVIDENCIÁRIO ICATU FI FINANCEIRO EM COTAS DE FI MULTIMERCADO",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Legacy Capital Previdenciário Icatu Multimercado"
+  },
+  {
+    "institution": "Icatu",
+    "cnpj": "03.879.361/0001-48",
+    "official_name": "ARX INCOME ICATU PREVIDÊNCIA FI FINANCEIRO MULTIMERCADO - RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Arx Income Icatu Previdência Multimercado"
+  },
+  {
+    "institution": "Icatu",
+    "cnpj": "53.444.192/0001-91",
+    "official_name": "ICATU VANGUARDA DINÂMICO CDI FIF - CIC MULTIMERCADO CRÉDITO PRIVADO PREVIDENCIÁRIO - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Icatu Vanguarda Dinâmico CDI - Multimercado Crédito Privado Previdenciário"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "40.616.111/0001-41",
+    "official_name": "ITAÚ FLEXPREV OPTIMUS FIF CIC RF LP - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Flexprev Optimus RF LP"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "42.431.509/0001-39",
+    "official_name": "ITAÚ FLEXPREV DIFERENCIADO FIF CIC RF CRED PRIV RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Flexprev Diferenciado RF Cred Priv"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "26.491.419/0001-87",
+    "official_name": "KINEA CRÉDITO PRIVADO PREV RENDA FIXA FUNDO DE INVESTIMENTO FINANCEIRO RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú · Kinea Crédito Privado Prev Renda Fixa"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "52.078.859/0001-17",
+    "official_name": "ITAÚ FLEXPREV JANEIRO RENDA FIXA LONGO PRAZO FIF DA CIC RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Flexprev Janeiro Renda Fixa Longo Prazo"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "43.565.306/0001-06",
+    "official_name": "KINEA ANDES PREV IVP RENDA FIXA CRÉDITO PRIVADO FIF CIC RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú · Kinea Andes Prev Ivp Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "39.566.676/0001-82",
+    "official_name": "ITAÚ FLEXPREV GLOBAL DINÂMICO RF LONGO PRAZO FIF DA CLASSE DE INVESTIMENTO EM COTAS RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Flexprev Global Dinâmico RF Longo Prazo"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "41.301.133/0001-85",
+    "official_name": "ITAÚ FLEXPREV ACTIVE FIX FIF CIC RF CRED PRIV - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Flexprev Active Fix RF Cred Priv"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "49.645.368/0001-04",
+    "official_name": "ABSOLUTE ATENAS PREV ITAÚ FEEDER FIF DA CIC RENDA FIXA CRÉDITO PRIVADO RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Absolute Atenas Prev Itaú Feeder Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "49.803.664/0001-88",
+    "official_name": "ITAÚ FLEXPREV ADVANCED PRIVATE MARKETS FIF CIC MULT CRÉD PRIV RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Flexprev Advanced Private Markets Mult Créd Priv"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "37.110.110/0001-16",
+    "official_name": "KAPITALO K10 PREVIDÊNCIA I FIF DA CIC MULTIMERCADO RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú · Kapitalo K10 Previdência I Multimercado"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "42.380.882/0001-08",
+    "official_name": "ITAÚ FLEXPREV SINFONIA FIF CIC MULT CRED PRIV - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Flexprev Sinfonia Mult Cred Priv"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "39.401.308/0001-84",
+    "official_name": "ITAÚ FLEXPREV INDEX SIMPLES SELIC FIF CIC RF - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Flexprev Index Simples Selic RF"
+  },
+  {
+    "institution": "Itaú",
+    "cnpj": "34.568.421/0001-35",
+    "official_name": "ITAÚ PREV JURO REAL TARGET 2050 FIF CIC RF - RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Itaú Prev Juro Real Target 2050 RF"
+  },
+  {
+    "institution": "Safra",
+    "cnpj": "19.391.025/0001-91",
+    "official_name": "SAFRA PREV CAPITAL MARKET FIF PREVIDENCIÁRIO CIC RENDA FIXA CRÉDITO PRIVADO PREV RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Safra Prev Capital Market Previdenciário Renda Fixa Crédito Privado Prev"
+  },
+  {
+    "institution": "Safra",
+    "cnpj": "42.298.721/0001-70",
+    "official_name": "MANAGER AZ QUEST LUCE FIF PREVIDENCIÁRIO CIC RENDA FIXA CRÉDITO PRIVADO PREVIDENCIÁRIO RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Safra · Manager Az Quest Luce Previdenciário Renda Fixa Crédito Privado Previdenciário"
+  },
+  {
+    "institution": "SulAmérica",
+    "cnpj": "19.922.130/0001-00",
+    "official_name": "SULAMÉRICA PREV CREDITO ESG FIF DA CLASSE DE INV EM COTAS RENDA FIXA CRED PRIV IS RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Sulamérica Prev Credito ESG Renda Fixa Cred Priv Is"
+  },
+  {
+    "institution": "SulAmérica",
+    "cnpj": "10.394.850/0001-75",
+    "official_name": "SULAMÉRICA PRESTIGE PREV FUNDO DE INVESTIMENTO FINANCEIRO RENDA FIXA RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Sulamérica Prestige Prev Renda Fixa"
+  },
+  {
+    "institution": "SulAmérica",
+    "cnpj": "19.959.552/0001-50",
+    "official_name": "SULAMÉRICA PRESTIGE STRATEGIE FIF DA CIC RENDA FIXA CRÉDITO PRIVADO RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Sulamérica Prestige Strategie Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "XP",
+    "cnpj": "30.910.166/0001-06",
+    "official_name": "XP CORPORATE LIGHT CRÉDITO PRIVADO XP SEGUROS FIC RENDA FIXA RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "XP Corporate Light Crédito Privado XP Seguros Renda Fixa"
+  },
+  {
+    "institution": "XP",
+    "cnpj": "32.319.225/0001-00",
+    "official_name": "LETO PREV ADVISORY XP SEGUROS FIC DE FIF RENDA FIXA CRÉD PRIV LONGO PRAZO - RESP LTDA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Leto Prev Advisory XP Seguros De Renda Fixa Créd Priv Longo Prazo"
+  },
+  {
+    "institution": "XP",
+    "cnpj": "35.420.532/0001-62",
+    "official_name": "TREND PÓS II XP SEGUROS PREVIDENCIÁRIO FC MULTIMERCADO RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Trend Pós II XP Seguros Previdenciário Multimercado"
+  },
+  {
+    "institution": "XP",
+    "cnpj": "53.856.982/0001-84",
+    "official_name": "PERSEVERA PROSPERA XP SEGUROS PREV FUNDO DE INVESTIMENTO FINANCEIRO RENDA FIXA CRED PRIV RESP LIMT",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Persevera Prospera XP Seguros Prev Renda Fixa Cred Priv"
+  },
+  {
+    "institution": "XP",
+    "cnpj": "48.940.997/0001-96",
+    "official_name": "ROOT CAPITAL CRÉDITO HG PREV XP SEG FIC DE FIF RENDA FIXA CRÉD PRIV - RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Root Capital Crédito Hg Prev XP Seg De Renda Fixa Créd Priv"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "13.052.739/0001-99",
+    "official_name": "SANTANDER XVII RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander XVII Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "07.647.772/0001-69",
+    "official_name": "SANTANDER PREV FIX SUPERIOR RENDA FIXA CRÉDITO PRIVADO -  CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Fix Superior Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "30.556.978/0001-03",
+    "official_name": "ACESSO ABSOLUTE PREV MULTIMERCADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander · Acesso Absolute Prev Multimercado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "02.498.189/0001-10",
+    "official_name": "SANTANDER PREV MODERADO MULTIMERCADO CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Moderado Multimercado Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "23.682.707/0001-20",
+    "official_name": "SANTANDER PREV PB NTN-B 2035 RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev PB NTN-B 2035 Renda Fixa"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "11.584.191/0001-00",
+    "official_name": "SANTANDER 49 III MULTIMERCADO CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander 49 III Multimercado Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "30.493.963/0001-35",
+    "official_name": "ACESSO TRUXT MACRO PREV MULTIMERCADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander · Acesso Truxt Macro Prev Multimercado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "30.102.236/0001-08",
+    "official_name": "ACESSO SPX LANCER PREVIDENCIÁRIO MULTIMERCADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander · Acesso SPX Lancer Previdenciário Multimercado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "30.102.516/0001-08",
+    "official_name": "SANTANDER PREV PB ATIVO RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev PB Ativo Renda Fixa"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "26.622.821/0001-53",
+    "official_name": "SANTANDER PREV FIX RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Fix Renda Fixa"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "04.684.453/0001-35",
+    "official_name": "SANTANDER XIII RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander XIII Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "07.199.289/0001-69",
+    "official_name": "SANTANDER I RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander I Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "24.986.115/0001-65",
+    "official_name": "SANTANDER PREV SÁBIYA MULTIMERCADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Sábiya Multimercado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "08.629.012/0001-91",
+    "official_name": "SANTANDER X RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander X Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "10.618.943/0001-36",
+    "official_name": "SANTANDER XVI RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander XVI Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "03.534.939/0001-24",
+    "official_name": "SANTANDER PREV AGRESSIVO SUPERIOR MULTIMERCADO CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Agressivo Superior Multimercado Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "27.389.572/0001-60",
+    "official_name": "ACESSO ADAM PREVIDÊNCIA MULT - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander · Acesso Adam Previdência Mult"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "04.572.903/0001-06",
+    "official_name": "SANTANDER PREV FIX EXCLUSIVO RENDA FIXA CRÉDITO  PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Fix Exclusivo Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "02.498.190/0001-44",
+    "official_name": "SANTANDER PREV FIX RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Fix Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "03.271.099/0001-54",
+    "official_name": "SANTANDER VIII RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander VIII Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "52.188.289/0001-18",
+    "official_name": "SANTANDER PREV VALÊNCIA GLOBAL MULTIMERCADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Valência Global Multimercado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "08.918.382/0001-49",
+    "official_name": "SANTANDER PREV MULTIMERCADO CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Multimercado Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "43.597.660/0001-04",
+    "official_name": "SANTANDER PREV ALOCAÇÃO MACRO MULTIMERCADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Alocação Macro Multimercado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "30.556.947/0001-44",
+    "official_name": "ACESSO JGP PREV 2 MULTIMERCADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander · Acesso JGP Prev 2 Multimercado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "52.187.755/0001-40",
+    "official_name": "SANTANDER PREV GLOBAL RENDA FIXA LONGO PRAZO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Global Renda Fixa Longo Prazo"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "43.619.621/0001-60",
+    "official_name": "SANTANDER PREV INFLAÇÃO ATIVO SUPER RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Inflação Ativo Super Renda Fixa"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "50.584.509/0001-05",
+    "official_name": "SANTANDER PREV CÓRDOBA MACRO CRESCIMENTO MULTIMERCADO - CIC FIF RESPONSABILIDADE LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Córdoba Macro Crescimento Multimercado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "09.130.426/0001-34",
+    "official_name": "SANTANDER PREV FIX INVEST RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Fix Invest Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "30.128.621/0001-16",
+    "official_name": "SANTANDER PREV SEVILHA DINÂMICO MULT CRED PRIV - FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Sevilha Dinâmico Mult Cred Priv"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "30.102.441/0001-65",
+    "official_name": "SANTANDER PREV NTN-B 2028 RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev NTN-B 2028 Renda Fixa"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "05.971.745/0001-11",
+    "official_name": "SANTANDER IV RENDA FIXA CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander IV Renda Fixa Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "23.631.723/0001-94",
+    "official_name": "SANTANDER PREV PERFIL MODERADO MULTIMERCADO CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Perfil Moderado Multimercado Crédito Privado"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "15.740.330/0001-90",
+    "official_name": "SANTANDER PREV IMA-B RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev IMA-B Renda Fixa"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "17.138.170/0001-30",
+    "official_name": "SANTANDER PREV PRIVATE IMA-B RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev Private IMA-B Renda Fixa"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "29.549.585/0001-85",
+    "official_name": "SANTANDER PREV PB NTN-B 2028 RENDA FIXA - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev PB NTN-B 2028 Renda Fixa"
+  },
+  {
+    "institution": "Santander",
+    "cnpj": "23.682.635/0001-11",
+    "official_name": "SANTANDER PREV PB ALLOCATION MULTIMERCADO CRÉDITO PRIVADO - CIC FIF RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Santander Prev PB Allocation Multimercado Crédito Privado"
+  },
+  {
+    "institution": "XP",
+    "cnpj": "43.423.186/0001-02",
+    "official_name": "RIZA LÓTUS PREV XP SEG FUNDO DE INVESTIMENTO EM COTAS MULTIMERCADO CRÉDITO PRIVADO RESP LIMITADA",
+    "status": "Em Funcionamento Normal",
+    "source": "https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip",
+    "name": "Riza Lótus Prev XP Seg Multimercado Crédito Privado"
   }
 ]
